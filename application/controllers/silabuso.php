@@ -1,0 +1,240 @@
+<?php
+
+//kelas yang menampilkan tampilan-tampilan dari silabuso
+
+class silabuso extends CI_Controller{
+	
+	public function __construct(){
+		parent::__construct();
+
+		$this->load->model("prodi_model");
+		$this->load->model("dosen_model");
+		$this->load->model("matakuliah_model");
+		$this->load->model("sifat_model");
+		$this->load->model("mk_prodi_model");
+		$this->load->model("mkprodi_dosen_model");
+		$this->load->model("prasyarat_model");
+	}
+
+
+	public function index(){
+		$msg = $this->input->get("msg");
+		$message = "";
+		switch($msg){
+			case 1:
+				$message = "Prodi telah ditambahkan";
+				break;
+			case 2:
+				$message = "Prodi telah diupdate";
+				break;
+			case 3:
+				$message = "Dosen telah ditambahkan";
+				break;
+			case 4:
+				$message = "Dosen telah diupdate";
+				break;
+			case 5:
+				$message = "Matakuliah telah ditambahkan";
+				break;
+			case 6:
+				$message = "Matakuliah telah diupdate";
+				break;
+
+
+		}
+
+		$data['message'] = $message;
+
+		$this->load->view("tpl/head");
+		$this->load->view("admin", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	// halaman menambah prodi
+	public function add_prodi(){
+		$this->load->view("tpl/head");
+		$this->load->view("add_prodi");
+		$this->load->view("tpl/foot");
+	}
+
+	//halaman list edit prodi
+	public function edit_prodi(){
+
+		$data_prodi = $this->prodi_model->get()->result();
+
+		$data['prodi'] = $data_prodi;
+
+		$this->load->view("tpl/head");
+		$this->load->view("edit_prodi", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	//halaman edit prodi
+	public function edit_prodi_p($kode_prodi){
+
+		//dapatkan id prodi
+		$data_prodi = $this->prodi_model->get_by_kodeprodi($kode_prodi)->row();
+
+		$data['prodi']	=	$data_prodi;
+
+		$this->load->view("tpl/head");
+		$this->load->view("edit_prodi_p", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	// halaman menambah dosen
+	public function add_dosen(){
+		$this->load->view("tpl/head");
+		$this->load->view("add_dosen");
+		$this->load->view("tpl/foot");
+	}
+
+	//halaman list edit dosen
+	public function edit_dosen(){
+
+		$data_dosen = $this->dosen_model->get()->result();
+
+		$data['dosen'] = $data_dosen;
+
+		$this->load->view("tpl/head");
+		$this->load->view("edit_dosen", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	//halaman edit salah satu dosen
+	public function edit_dosen_p($kode_dosen){
+
+		//dapatkan id dosen
+		$data_dosen = $this->dosen_model->get_by_kodedosen($kode_dosen)->row();
+
+		$data['dosen']	=	$data_dosen;
+
+		$this->load->view("tpl/head");
+		$this->load->view("edit_dosen_p", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	// halaman menambah matakuliah
+	public function add_matakuliah(){
+		$this->load->view("tpl/head");
+		$this->load->view("add_matakuliah");
+
+
+		$this->load->view("tpl/foot");
+	}
+
+	//halaman list edit matakuliah
+	public function edit_matakuliah(){
+
+		$data_matakuliah = $this->matakuliah_model->get()->result();
+
+		$data['matakuliah'] = $data_matakuliah;
+
+		$this->load->view("tpl/head");
+		$this->load->view("edit_matakuliah", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	//halaman edit salah satu matakuliah
+	public function edit_matakuliah_p($kode_mk){
+
+		//dapatkan id dosen
+		$data_matakuliah = $this->matakuliah_model->get_by_kodemk($kode_mk)->row();
+
+		$data['matakuliah']	=	$data_matakuliah;
+
+		$this->load->view("tpl/head");
+		$this->load->view("edit_matakuliah_p", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	//halaman info prodi dan mata kuliah di dalamnya
+	public function info_prodi($kode_prodi){
+
+		$data_prodi = $this->prodi_model->get_by_kodeprodi($kode_prodi)->row();
+		$data_mk_prodi = $this->mk_prodi_model->get_by_idprodi($data_prodi->id_prodi)->result();
+
+		$data['prodi'] 		= $data_prodi;
+		$data['mk_prodi']	= $data_mk_prodi;
+
+		$this->load->view("tpl/head");
+		$this->load->view("info_prodi", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	//halaman tambah mk_prodi
+	public function add_mkprodi($kode_prodi){
+		$data_prodi 		= $this->prodi_model->get_by_kodeprodi($kode_prodi)->row();
+		$data_matakuliah 	= $this->matakuliah_model->get()->result();
+		$data_sifat			= $this->sifat_model->get()->result();
+
+		$data['prodi'] 		= $data_prodi;
+		$data['matakuliah']	= $data_matakuliah;
+		$data['sifat']		= $data_sifat;
+
+		$this->load->view("tpl/head");
+		$this->load->view("add_mkprodi", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	//halaman tambah dosen untuk mk_prodi
+	public function add_mkdosen($id_mk_prodi){
+		$data_dosen			= $this->dosen_model->get()->result();
+		
+		$data_mk_prodi		= $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
+		$data_matakuliah	= $this->matakuliah_model->get_by_idmk($data_mk_prodi->id_mk)->row();
+		$data_prodi 		= $this->prodi_model->get_by_idprodi($data_mk_prodi->id_prodi)->row();
+
+		$data['dosen']		= $data_dosen;
+		$data['mk_prodi']	= $data_mk_prodi;
+		$data['matakuliah']	= $data_matakuliah;
+		$data['prodi']		= $data_prodi;
+
+		$this->load->view("tpl/head");
+		$this->load->view("add_mkprodi_dosen", $data);
+		$this->load->view("tpl/foot");
+	}
+
+
+	public function info_mk_prodi($id_mk_prodi){
+		$data_mk_prodi		= $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
+
+		$data_prodi 		= $this->prodi_model->get_by_idprodi($data_mk_prodi->id_prodi)->row();
+		$data_sifat			= $this->sifat_model->get_by_idsifat($data_mk_prodi->id_sifat)->row();
+		$data_dosen			= $this->mkprodi_dosen_model->get_by_idmkprodi($data_mk_prodi->id_mk_prodi)->result();
+
+		$data_prasyarat		= $this->prasyarat_model->get_by_idmkprodi($id_mk_prodi)->result();
+
+		$data['mk_prodi'] 	= $data_mk_prodi;
+		$data['prodi']		= $data_prodi;
+		$data['sifat']		= $data_sifat;
+		$data['dosen']		= $data_dosen;
+		$data['prasyarat']	= $data_prasyarat;
+
+		$this->load->view("tpl/head");
+		$this->load->view("info_mkprodi", $data);
+		$this->load->view("tpl/foot");		
+	}
+
+	//halaman menambah prasyarat matakuliah
+	public function add_prasyarat($id_mk_prodi){
+		$data_mk_prodi 		= $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
+
+		$data_matakuliah	= $this->matakuliah_model->get_by_idmk($data_mk_prodi->id_mk)->row();
+		$data_prodi 		= $this->prodi_model->get_by_idprodi($data_mk_prodi->id_prodi)->row();
+
+		//data semua matakuliah dari prodi bersangkutan
+		$data_list_matakuliah_prodi	= $this->mk_prodi_model->get_by_idprodi($data_mk_prodi->id_prodi)->result();
+
+
+		$data['mk_prodi'] 	= $data_mk_prodi;
+		$data['prodi']		= $data_prodi;
+		$data['matakuliah']	= $data_matakuliah;
+		$data['list_matakuliah_prodi'] = $data_list_matakuliah_prodi;
+
+		$this->load->view("tpl/head");
+		$this->load->view("add_prasyarat", $data);
+		$this->load->view("tpl/foot");
+	}
+
+}
