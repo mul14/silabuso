@@ -14,6 +14,7 @@ class silabuso extends CI_Controller{
 		$this->load->model("mk_prodi_model");
 		$this->load->model("mkprodi_dosen_model");
 		$this->load->model("prasyarat_model");
+		$this->load->model("jadwal_model");
 	}
 
 
@@ -205,11 +206,14 @@ class silabuso extends CI_Controller{
 
 		$data_prasyarat		= $this->prasyarat_model->get_by_idmkprodi($id_mk_prodi)->result();
 
+		$data_jadwal		= $this->jadwal_model->get_by_idmkprodi($id_mk_prodi)->result();
+
 		$data['mk_prodi'] 	= $data_mk_prodi;
 		$data['prodi']		= $data_prodi;
 		$data['sifat']		= $data_sifat;
 		$data['dosen']		= $data_dosen;
 		$data['prasyarat']	= $data_prasyarat;
+		$data['jadwal']		= $data_jadwal;
 
 		$this->load->view("tpl/head");
 		$this->load->view("info_mkprodi", $data);
@@ -234,6 +238,41 @@ class silabuso extends CI_Controller{
 
 		$this->load->view("tpl/head");
 		$this->load->view("add_prasyarat", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	public function add_jadwal($id_mk_prodi){
+		$data_mk_prodi 		= $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
+
+		$data_prodi 		= $this->prodi_model->get_by_idprodi($data_mk_prodi->id_prodi)->row();
+		$data_matakuliah	= $this->matakuliah_model->get_by_idmk($data_mk_prodi->id_mk)->row();
+
+		$data['matakuliah']	= $data_matakuliah;
+		$data['mk_prodi'] 	= $data_mk_prodi;
+		$data['prodi']		= $data_prodi;
+
+		$this->load->view("tpl/head");
+		$this->load->view("add_jadwal", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	public function edit_jadwal(){
+		$id_jadwal 		= $this->input->get("id_jadwal");
+		$id_mk_prodi	= $this->input->get("id_mk_prodi");
+
+		$data_jadwal		= $this->jadwal_model->get_by_idjadwal($id_jadwal)->row();
+		$data_mk_prodi 		= $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
+
+		$data_prodi 		= $this->prodi_model->get_by_idprodi($data_mk_prodi->id_prodi)->row();
+		$data_matakuliah	= $this->matakuliah_model->get_by_idmk($data_mk_prodi->id_mk)->row();
+
+		$data['matakuliah']	= $data_matakuliah;
+		$data['mk_prodi'] 	= $data_mk_prodi;
+		$data['prodi']		= $data_prodi;
+		$data['jadwal']		= $data_jadwal;
+
+		$this->load->view("tpl/head");
+		$this->load->view("edit_jadwal", $data);
 		$this->load->view("tpl/foot");
 	}
 

@@ -32,3 +32,21 @@ Prasyarat <br/>
 	</ul>
 
 <a href="<?php echo base_url()?>p/add_prasyarat/<?php echo $mk_prodi->id_mk_prodi ?>">+tambah prasyarat</a>
+
+<br/>
+Jadwal:
+<br/>
+<a href="<?php echo base_url()?>p/add_jadwal/<?php echo $mk_prodi->id_mk_prodi ?>">+tambah jadwal</a>
+	<ul>
+	<?php
+		foreach ($jadwal as $j) {
+			echo "<li>";
+			echo $j->ruangan."(".$j->jam_mulai."-".$j->jam_akhir.")";
+			echo " - ";
+			echo "<a href='".base_url()."proc/del_jadwal?id_jadwal=".$j->id_jadwal."&id_mk_prodi=".$mk_prodi->id_mk_prodi."'>"."Hapus"."</a>";
+			echo " ";
+			echo "<a href='".base_url()."p/edit_jadwal?id_jadwal=".$j->id_jadwal."&id_mk_prodi=".$mk_prodi->id_mk_prodi."'>"."Edit"."</a>";
+			echo "</li>";
+		}
+	?>
+	</ul>

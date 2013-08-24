@@ -13,6 +13,7 @@ class proc extends CI_Controller{
 		$this->load->model("mk_prodi_model");
 		$this->load->model("mkprodi_dosen_model");
 		$this->load->model("prasyarat_model");
+		$this->load->model("jadwal_model");
 	}
 
 	// proses tambah prodi
@@ -163,6 +164,40 @@ class proc extends CI_Controller{
 		$id_mk_prodi 		= $this->input->get("id_mk_prodi");
 
 		$this->prasyarat_model->delete_by_idprasyarat($id_prasyarat);
+
+		redirect("silabuso/info_mk_prodi/".$id_mk_prodi);
+	}
+
+	//tambah jadwal
+	public function add_jadwal(){
+		$id_mk_prodi 	= $this->input->post("id_mk_prodi");
+		$ruangan		= $this->input->post("ruangan");
+		$jam_mulai		= $this->input->post("jam_mulai");
+		$jam_akhir		= $this->input->post("jam_akhir");
+
+		$this->jadwal_model->add($id_mk_prodi, $ruangan, $jam_mulai, $jam_akhir);
+
+		redirect("silabuso/info_mk_prodi/".$id_mk_prodi);
+	}
+
+	public function edit_jadwal(){
+		
+		$id_mk_prodi 	= $this->input->post("id_mk_prodi");
+
+		$id_jadwal		= $this->input->post("id_jadwal");
+		$ruangan		= $this->input->post("ruangan");
+		$jam_mulai		= $this->input->post("jam_mulai");
+		$jam_akhir		= $this->input->post("jam_akhir");
+
+		$this->jadwal_model->update_by_idjadwal($id_jadwal,$ruangan, $jam_mulai, $jam_akhir);
+
+		redirect("silabuso/info_mk_prodi/".$id_mk_prodi);
+	}
+
+	public function del_jadwal(){
+		$id_jadwal		= $this->input->get("id_jadwal");
+		$id_mk_prodi 	= $this->input->get("id_mk_prodi");
+		$this->jadwal_model->delete_by_idjadwal($id_jadwal);
 
 		redirect("silabuso/info_mk_prodi/".$id_mk_prodi);
 	}
