@@ -34,6 +34,21 @@ class proc extends CI_Controller{
 		redirect("silabuso/index?msg=2");
 	}
 
+	public function del_prodi(){
+		$kode_prodi	= $this->input->get("kode_prodi");
+
+		$data_prodi = $this->prodi_model->get_by_kodeprodi($kode_prodi)->row();
+
+		//cek tidak ada mk_prodi yang menggunakan prodi ini
+		$num_mk_prodi = $this->mk_prodi_model->get_by_idprodi($data_prodi->id_prodi)->num_rows();
+		
+		if ($num_mk_prodi == 0) {
+			$this->prodi_model->delete_by_idprodi($data_prodi->id_prodi);
+		}
+		
+		redirect("silabuso/edit_prodi");
+	}
+
 
 	//proses menambah dosen
 	public function add_dosen(){
@@ -54,6 +69,22 @@ class proc extends CI_Controller{
 
 		$this->dosen_model->update_by_iddosen($id_dosen, $kode_dosen, $nip_dosen, $nama_dosen);
 		redirect("silabuso/index?msg=4");
+	}
+
+	public function del_dosen(){
+		$kode_dosen	= $this->input->get("kode_dosen");
+
+		$data_dosen = $this->dosen_model->get_by_kodedosen($kode_dosen)->row();
+
+		//cek tidak ada mkprodi_dosen yang menggunakan dosen ini
+		$num_mkprodi_dosen = $this->mkprodi_dosen_model->get_by_iddosen($data_dosen->id_dosen)->num_rows();
+		
+		if ($num_mkprodi_dosen == 0) {
+			// $this->prodi_model->delete_by_kodeprodi($kode_prodi);
+			$this->dosen_model->delete_by_iddosen($data_dosen->id_dosen);
+		}
+		
+		redirect("silabuso/edit_dosen");
 	}
 
 	// proses menambah matakuliah
@@ -86,6 +117,15 @@ class proc extends CI_Controller{
 		redirect("silabuso/index?msg=6");
 	}
 
+	//hapus matakuliah
+	public function delete_matakuliah(){
+		$id_mk 		= $this->input->get("id_mk");
+
+		$this->matakuliah_model->delete_by_idmk($id_mk);
+
+		redirect("silabuso/edit_matakuliah");
+	}
+
 	//proses menambah data mk_prodi
 	public function add_mk_prodi(){
 		$id_mk		= $this->input->post("id_mk");
@@ -97,6 +137,16 @@ class proc extends CI_Controller{
 		$data_insert = $this->mk_prodi_model->add($id_mk, $id_prodi, $id_sifat, $semester);
 
 		redirect("silabuso/add_mkdosen/".$data_insert);
+	}
+
+	public function del_mk_prodi(){
+		$id_mk_prodi = $this->input->get("id_mk_prodi");
+		
+		$data_mk_prodi = $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
+
+		$this->mk_prodi_model->delete_by_idmkprodi($id_mk_prodi);
+		
+		redirect("silabuso/info_prodi/".$data_mk_prodi->kode_prodi);
 	}
 
 	public function add_mkprodi_dosen(){
@@ -201,5 +251,6 @@ class proc extends CI_Controller{
 
 		redirect("silabuso/info_mk_prodi/".$id_mk_prodi);
 	}
+
 
 }

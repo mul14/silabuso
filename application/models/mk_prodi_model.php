@@ -43,4 +43,20 @@ class mk_prodi_model extends CI_Model{
 											"semester"=>$semester));
 		return $this->db->insert_id();
 	}
+
+	public function delete_by_idmkprodi($id_mk_prodi){
+		//cek tidak ada id_mk_prodi di "jadwal", "mkprodi_dosen", "prasyarat"
+		
+		$num_jadwal 		= $this->db->get_where("jadwal", array("id_mk_prodi"=>$id_mk_prodi))->num_rows();
+		$num_mkprodi_dosen 	= $this->db->get_where("mkprodi_dosen", array("id_mk_prodi"=>$id_mk_prodi))->num_rows();
+		$num_prasyarat	 	= $this->db->get_where("prasyarat", array("id_mk_prodi"=>$id_mk_prodi))->num_rows();
+
+		if ($num_jadwal == 0 &&
+			$num_mkprodi_dosen == 0 &&
+			$num_prasyarat == 0) {
+
+			$this->db->where("id_mk_prodi", $id_mk_prodi);
+			$this->db->delete("mk_prodi");
+		}
+	}
 }

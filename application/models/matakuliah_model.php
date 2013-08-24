@@ -51,4 +51,16 @@ class matakuliah_model extends CI_Model{
 		$this->db->where("id_mk",$id_mk);
 		$data = $this->db->update("matakuliah",$data);
 	}
+
+	public function delete_by_idmk($id_mk){
+		
+		//cek tidak ada "mk_prodi" yang menggunakan "id_mk"
+		$num_mk_prodi = $this->db->get_where("mk_prodi", array("id_mk"=>$id_mk))->num_rows;
+
+		if ($num_mk_prodi == 0) {
+			$this->db->where("id_mk", $id_mk);
+			$this->db->delete("matakuliah");
+		}
+
+	}
 }

@@ -29,4 +29,9 @@ class mkprodi_dosen_model extends CI_Model{
 		$this->db->where("id_mkprodi_dosen", $id_mkprodi_dosen);
 		$this->db->delete("mkprodi_dosen");
 	}
+
+	public function get_by_iddosen($id_dosen){
+		$data = $this->db->get_where("mkprodi_dosen", array("id_dosen"=>$id_dosen));
+		return $data;
+	}
 }

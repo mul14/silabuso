@@ -50,3 +50,6 @@ Jadwal:
 		}
 	?>
 	</ul>
+
+<hr/>
+<a href="<?php echo base_url()?>proc/del_mk_prodi?id_mk_prodi=<?php echo $mk_prodi->id_mk_prodi?>">Hapus matakuliah ini di prodi ini</a>

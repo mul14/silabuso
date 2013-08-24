@@ -41,6 +41,25 @@ class prodi_model extends CI_Model{
 												"nama_prodi"=>$nama_prodi));
 	}
 
+	//delete
+	public function delete_by_idprodi($id_prodi){
+
+		//cek tidak ada mk_prodi yang menggunakan id_prodi ini
+		$num_row = $this->db->get_where("mk_prodi", array("id_prodi"=>$id_prodi))->num_rows();
+
+		if ($num_row == 0) {
+			$this->db->where("id_prodi", $id_prodi);
+			$this->db->delete("prodi");
+		}
+		
+	}
+
+	//menghapus berdasarkan kode prodi
+	//tidak aman, tidak ada dicek dulu
+	public function delete_by_kodeprodi($kode_prodi){
+		$this->db->where("kode_prodi", $kode_prodi);
+		$this->db->delete("prodi");	
+	}
 
 
 }
