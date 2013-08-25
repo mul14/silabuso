@@ -2,7 +2,8 @@ Edit user
 <br/>
 
 <form method="POST" action="<?php echo base_url()?>proc/edit_user">
-	Username: <input type="text" name="username" value="<?php echo $user->username?>"/><br/>
+	<input type="hidden" name="id_user" value="<?php echo $user->id_user?>"/>
+	Username: <?php echo $user->username?><br/>
 	Password lama: <input type="password" name="old_pass"/><br/>
 	Password: <input type="password" name="pass1"/><br/>
 	Password lagi: <input type="password" name="pass2"/><br/>
@@ -19,3 +20,5 @@ Edit user
 	<br/>
 	<input type="submit" value="Edit"/>
 </form>
+
+<a href="<?php echo base_url()?>proc/del_user?id_user=<?php echo $user->id_user?>">! Hapus user ini</a>

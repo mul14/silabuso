@@ -275,7 +275,62 @@ class proc extends CI_Controller{
 
 			}
 		}
+	}
 
+	public function edit_user(){
+		$username		= $this->input->post("username");
+		$old_pass		= $this->input->post("old_pass");
+		$pass1			= $this->input->post("pass1");
+		$pass2			= $this->input->post("pass2");
+		$id_jabatan		= $this->input->post("id_jabatan");
+		$id_user		= $this->input->post("id_user");
+		
+		$data_user		= $this->user_model->get_by_iduser($id_user)->row();
+
+		//cek password yang lama benar dimasukkan
+		if (md5($old_pass) == $data_user->password) {
+			//cek ngubah password
+			if ($pass1 != "") {
+				//cek password dimasukkan sama
+				if ($pass1 == $pass2) {
+
+					$password = md5($pass1);
+
+					$data_update = array("id_jabatan"=>$id_jabatan, "password"=>$password);
+
+					$this->user_model->update_by_iduser($id_user, $data_update);
+
+					redirect("silabuso/edit_user_p/".$id_user);
+				}else{
+					//password nggak sama
+					redirect("silabuso/edit_user_p/".$id_user);
+				}
+			}else{
+			//nggak ngubah password
+
+				$data_update = array("id_jabatan"=>$id_jabatan);
+
+				$this->user_model->update_by_iduser($id_user, $data_update);
+
+				redirect("silabuso/edit_user_p/".$id_user);
+
+			}
+			
+		}else{
+			//tidak memasukkan password
+			redirect("silabuso/edit_user_p/".$id_user);
+		}
+	}
+
+	public function del_user(){
+		$id_user = $this->input->get("id_user");
+
+		//hanya admin yang bisa menghapus user
+		//nanti cek di session apakah dia admin?
+		//kemudian cek apakah dia tidak menghapus dirinya sendiri?
+
+		$this->user_model->delete_by_iduser($id_user);
+		redirect("silabuso/edit_user");
 	}
 
 }

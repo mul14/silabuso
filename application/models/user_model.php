@@ -29,4 +29,14 @@ class user_model extends CI_Model{
 		$data = $this->db->get_where("user", array("username"=>$username));
 		return $data;
 	}
+
+	public function update_by_iduser($id_user, $data){
+		$this->db->where("id_user", $id_user);
+		$this->db->update("user", $data);
+	}
+
+	public function delete_by_iduser($id_user){
+		$this->db->where("id_user", $id_user);
+		$this->db->delete("user");
+	}
 }
