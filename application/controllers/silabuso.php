@@ -17,6 +17,8 @@ class silabuso extends CI_Controller{
 		$this->load->model("jadwal_model");
 		$this->load->model("jabatan_model");
 		$this->load->model("user_model");
+
+		$this->load->library("session_login");
 	}
 
 
@@ -26,6 +28,8 @@ class silabuso extends CI_Controller{
 
 	// halaman menambah prodi
 	public function add_prodi(){
+		$this->session_login->check_login();
+
 		$this->load->view("tpl/head");
 		$this->load->view("add_prodi");
 		$this->load->view("tpl/foot");
@@ -33,6 +37,7 @@ class silabuso extends CI_Controller{
 
 	//halaman list edit prodi
 	public function edit_prodi(){
+		$this->session_login->check_login();
 
 		$data_prodi = $this->prodi_model->get()->result();
 
@@ -45,6 +50,7 @@ class silabuso extends CI_Controller{
 
 	//halaman edit prodi
 	public function edit_prodi_p($kode_prodi){
+		$this->session_login->check_login();
 
 		//dapatkan id prodi
 		$data_prodi = $this->prodi_model->get_by_kodeprodi($kode_prodi)->row();
@@ -58,6 +64,8 @@ class silabuso extends CI_Controller{
 
 	// halaman menambah dosen
 	public function add_dosen(){
+		$this->session_login->check_login();
+
 		$this->load->view("tpl/head");
 		$this->load->view("add_dosen");
 		$this->load->view("tpl/foot");
@@ -65,6 +73,7 @@ class silabuso extends CI_Controller{
 
 	//halaman list edit dosen
 	public function edit_dosen(){
+		$this->session_login->check_login();
 
 		$data_dosen = $this->dosen_model->get()->result();
 
@@ -77,6 +86,7 @@ class silabuso extends CI_Controller{
 
 	//halaman edit salah satu dosen
 	public function edit_dosen_p($kode_dosen){
+		$this->session_login->check_login();
 
 		//dapatkan id dosen
 		$data_dosen = $this->dosen_model->get_by_kodedosen($kode_dosen)->row();
@@ -90,6 +100,8 @@ class silabuso extends CI_Controller{
 
 	// halaman menambah matakuliah
 	public function add_matakuliah(){
+		$this->session_login->check_login();
+
 		$this->load->view("tpl/head");
 		$this->load->view("add_matakuliah");
 
@@ -99,6 +111,7 @@ class silabuso extends CI_Controller{
 
 	//halaman list edit matakuliah
 	public function edit_matakuliah(){
+		$this->session_login->check_login();
 
 		$data_matakuliah = $this->matakuliah_model->get()->result();
 
@@ -111,6 +124,8 @@ class silabuso extends CI_Controller{
 
 	//halaman edit salah satu matakuliah
 	public function edit_matakuliah_p($kode_mk){
+		$this->session_login->check_login();
+
 
 		//dapatkan id dosen
 		$data_matakuliah = $this->matakuliah_model->get_by_kodemk($kode_mk)->row();
@@ -124,6 +139,7 @@ class silabuso extends CI_Controller{
 
 	//halaman info prodi dan mata kuliah di dalamnya
 	public function info_prodi($kode_prodi){
+		$this->session_login->check_login();
 
 		$data_prodi = $this->prodi_model->get_by_kodeprodi($kode_prodi)->row();
 		$data_mk_prodi = $this->mk_prodi_model->get_by_idprodi($data_prodi->id_prodi)->result();
@@ -138,6 +154,8 @@ class silabuso extends CI_Controller{
 
 	//halaman tambah mk_prodi
 	public function add_mkprodi($kode_prodi){
+		$this->session_login->check_login();
+
 		$data_prodi 		= $this->prodi_model->get_by_kodeprodi($kode_prodi)->row();
 		$data_matakuliah 	= $this->matakuliah_model->get()->result();
 		$data_sifat			= $this->sifat_model->get()->result();
@@ -153,6 +171,8 @@ class silabuso extends CI_Controller{
 
 	//halaman tambah dosen untuk mk_prodi
 	public function add_mkdosen($id_mk_prodi){
+		$this->session_login->check_login();
+
 		$data_dosen			= $this->dosen_model->get()->result();
 		
 		$data_mk_prodi		= $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
@@ -171,6 +191,8 @@ class silabuso extends CI_Controller{
 
 
 	public function info_mk_prodi($id_mk_prodi){
+		$this->session_login->check_login();
+
 		$data_mk_prodi		= $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
 
 		$data_prodi 		= $this->prodi_model->get_by_idprodi($data_mk_prodi->id_prodi)->row();
@@ -195,6 +217,8 @@ class silabuso extends CI_Controller{
 
 	//halaman menambah prasyarat matakuliah
 	public function add_prasyarat($id_mk_prodi){
+		$this->session_login->check_login();
+
 		$data_mk_prodi 		= $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
 
 		$data_matakuliah	= $this->matakuliah_model->get_by_idmk($data_mk_prodi->id_mk)->row();
@@ -215,6 +239,8 @@ class silabuso extends CI_Controller{
 	}
 
 	public function add_jadwal($id_mk_prodi){
+		$this->session_login->check_login();
+
 		$data_mk_prodi 		= $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
 
 		$data_prodi 		= $this->prodi_model->get_by_idprodi($data_mk_prodi->id_prodi)->row();
@@ -230,6 +256,8 @@ class silabuso extends CI_Controller{
 	}
 
 	public function edit_jadwal(){
+		$this->session_login->check_login();
+
 		$id_jadwal 		= $this->input->get("id_jadwal");
 		$id_mk_prodi	= $this->input->get("id_mk_prodi");
 
@@ -250,6 +278,8 @@ class silabuso extends CI_Controller{
 	}
 
 	public function admin(){
+		$this->session_login->check_login();
+
 		$msg = $this->input->get("msg");
 		$message = "";
 		switch($msg){
@@ -283,12 +313,19 @@ class silabuso extends CI_Controller{
 	}
 
 	public function login(){
+		//kalau sudah login langsung tampilkan tampilan home
+		if ($this->session->userdata('logged_in') == true) {
+			redirect("silabuso/admin");
+		}
+
 		$this->load->view("tpl/head");
 		$this->load->view("login");
 		$this->load->view("tpl/foot");
 	}
 
 	public function add_user(){
+		$this->session_login->check_login();
+
 		$data_jabatan	= $this->jabatan_model->get()->result();
 
 		$data['jabatan']	=	$data_jabatan;
@@ -299,6 +336,8 @@ class silabuso extends CI_Controller{
 	}
 
 	public function edit_user(){
+		$this->session_login->check_login();
+
 		$data_user	=	$this->user_model->get()->result();
 		$data['user']	= $data_user;
 
@@ -308,6 +347,8 @@ class silabuso extends CI_Controller{
 	}
 
 	public function edit_user_p($id_user){
+		$this->session_login->check_login();
+
 		$data_user	=	$this->user_model->get_by_iduser($id_user)->row();
 		$data_jabatan	= $this->jabatan_model->get()->result();
 
@@ -317,7 +358,6 @@ class silabuso extends CI_Controller{
 		$this->load->view("tpl/head");
 		$this->load->view("edit_user_p", $data);
 		$this->load->view("tpl/foot");
-
 	}
 
 }

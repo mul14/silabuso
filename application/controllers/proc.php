@@ -333,4 +333,29 @@ class proc extends CI_Controller{
 		redirect("silabuso/edit_user");
 	}
 
+	public function login(){
+		$username = $this->input->post("username");
+		$password = $this->input->post("password");
+
+		$data_user = $this->user_model->get_by_username_password($username, md5($password));
+
+		//cek hanya ada satu pengguna (username dan password benar)
+		if ($data_user->num_rows() == 1) {
+			$data_user = $data_user->row();
+			$session_data = array('username' 	=> $data_user->username,
+								  'id_user'	 	=> $data_user->id_user,
+								  'logged_in'	=> TRUE);
+			$this->session->set_userdata($session_data);
+			redirect("silabuso/admin");
+		}else{
+		//username/password salah kembali lagi ke halaman login
+			redirect("silabuso/login");
+		}
+	}
+
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect("silabuso/login");
+	}
+
 }

@@ -39,4 +39,11 @@ class user_model extends CI_Model{
 		$this->db->where("id_user", $id_user);
 		$this->db->delete("user");
 	}
+
+	public function get_by_username_password($username, $password){
+		$data = $this->db->get_where("user", array("username"=>$username,
+												   "password"=>$password));
+
+		return $data;
+	}
 }
