@@ -5,6 +5,6 @@
 
 	<h2>SilabusO</h2>
 
-	<a href="<?php echo base_url()?>">home</a>
+	<a href="<?php echo base_url()?>p/admin">home</a>
 
 	<hr/>

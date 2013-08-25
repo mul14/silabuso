@@ -15,40 +15,13 @@ class silabuso extends CI_Controller{
 		$this->load->model("mkprodi_dosen_model");
 		$this->load->model("prasyarat_model");
 		$this->load->model("jadwal_model");
+		$this->load->model("jabatan_model");
+		$this->load->model("user_model");
 	}
 
 
 	public function index(){
-		$msg = $this->input->get("msg");
-		$message = "";
-		switch($msg){
-			case 1:
-				$message = "Prodi telah ditambahkan";
-				break;
-			case 2:
-				$message = "Prodi telah diupdate";
-				break;
-			case 3:
-				$message = "Dosen telah ditambahkan";
-				break;
-			case 4:
-				$message = "Dosen telah diupdate";
-				break;
-			case 5:
-				$message = "Matakuliah telah ditambahkan";
-				break;
-			case 6:
-				$message = "Matakuliah telah diupdate";
-				break;
-
-
-		}
-
-		$data['message'] = $message;
-
-		$this->load->view("tpl/head");
-		$this->load->view("admin", $data);
-		$this->load->view("tpl/foot");
+		
 	}
 
 	// halaman menambah prodi
@@ -274,6 +247,77 @@ class silabuso extends CI_Controller{
 		$this->load->view("tpl/head");
 		$this->load->view("edit_jadwal", $data);
 		$this->load->view("tpl/foot");
+	}
+
+	public function admin(){
+		$msg = $this->input->get("msg");
+		$message = "";
+		switch($msg){
+			case 1:
+				$message = "Prodi telah ditambahkan";
+				break;
+			case 2:
+				$message = "Prodi telah diupdate";
+				break;
+			case 3:
+				$message = "Dosen telah ditambahkan";
+				break;
+			case 4:
+				$message = "Dosen telah diupdate";
+				break;
+			case 5:
+				$message = "Matakuliah telah ditambahkan";
+				break;
+			case 6:
+				$message = "Matakuliah telah diupdate";
+				break;
+
+
+		}
+
+		$data['message'] = $message;
+
+		$this->load->view("tpl/head");
+		$this->load->view("admin", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	public function login(){
+		$this->load->view("tpl/head");
+		$this->load->view("login");
+		$this->load->view("tpl/foot");
+	}
+
+	public function add_user(){
+		$data_jabatan	= $this->jabatan_model->get()->result();
+
+		$data['jabatan']	=	$data_jabatan;
+
+		$this->load->view("tpl/head");
+		$this->load->view("add_user", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	public function edit_user(){
+		$data_user	=	$this->user_model->get()->result();
+		$data['user']	= $data_user;
+
+		$this->load->view("tpl/head");
+		$this->load->view("edit_user", $data);
+		$this->load->view("tpl/foot");
+	}
+
+	public function edit_user_p($id_user){
+		$data_user	=	$this->user_model->get_by_iduser($id_user)->row();
+		$data_jabatan	= $this->jabatan_model->get()->result();
+
+		$data['user']	= $data_user;
+		$data['jabatan']	=	$data_jabatan;
+
+		$this->load->view("tpl/head");
+		$this->load->view("edit_user_p", $data);
+		$this->load->view("tpl/foot");
+
 	}
 
 }

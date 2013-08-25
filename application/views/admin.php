@@ -6,6 +6,9 @@
 <br/>
 <a href="<?php echo base_url()?>p/add_matakuliah">Add matakuliah</a>
 <a href="<?php echo base_url()?>p/edit_matakuliah">Edit matakuliah</a>
+<br/>
+<a href="<?php echo base_url()?>p/add_user">Add user</a>
+<a href="<?php echo base_url()?>p/edit_user">Edit user</a>
 <hr/>
 
 <?php echo $message ?>

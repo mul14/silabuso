@@ -14,6 +14,7 @@ class proc extends CI_Controller{
 		$this->load->model("mkprodi_dosen_model");
 		$this->load->model("prasyarat_model");
 		$this->load->model("jadwal_model");
+		$this->load->model("user_model");
 	}
 
 	// proses tambah prodi
@@ -252,5 +253,29 @@ class proc extends CI_Controller{
 		redirect("silabuso/info_mk_prodi/".$id_mk_prodi);
 	}
 
+	public function add_user(){
+		$username		= $this->input->post("username");
+		$pass1			= $this->input->post("pass1");
+		$pass2			= $this->input->post("pass2");
+		$id_jabatan		= $this->input->post("id_jabatan");
+
+
+		$num_username	= $this->user_model->get_by_username($username)->num_rows();
+
+		//cek password dimasukkan sama
+		if ($pass1 == $pass2) {
+			//cek tidak ada username yang sama
+			if ($num_username == 0) {
+
+				$password = md5($pass1);
+
+				$this->user_model->add($id_jabatan, $username, $password);
+
+				redirect("silabuso/edit_user");
+
+			}
+		}
+
+	}
 
 }
