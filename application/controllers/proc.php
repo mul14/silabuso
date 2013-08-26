@@ -222,11 +222,12 @@ class proc extends CI_Controller{
 	//tambah jadwal
 	public function add_jadwal(){
 		$id_mk_prodi 	= $this->input->post("id_mk_prodi");
+		$hari			= $this->input->post("hari");
 		$ruangan		= $this->input->post("ruangan");
 		$jam_mulai		= $this->input->post("jam_mulai");
 		$jam_akhir		= $this->input->post("jam_akhir");
 
-		$this->jadwal_model->add($id_mk_prodi, $ruangan, $jam_mulai, $jam_akhir);
+		$this->jadwal_model->add($id_mk_prodi, $hari, $ruangan, $jam_mulai, $jam_akhir);
 
 		redirect("silabuso/info_mk_prodi/".$id_mk_prodi);
 	}
@@ -235,12 +236,13 @@ class proc extends CI_Controller{
 		
 		$id_mk_prodi 	= $this->input->post("id_mk_prodi");
 
+		$hari			= $this->input->post("hari");
 		$id_jadwal		= $this->input->post("id_jadwal");
 		$ruangan		= $this->input->post("ruangan");
 		$jam_mulai		= $this->input->post("jam_mulai");
 		$jam_akhir		= $this->input->post("jam_akhir");
 
-		$this->jadwal_model->update_by_idjadwal($id_jadwal,$ruangan, $jam_mulai, $jam_akhir);
+		$this->jadwal_model->update_by_idjadwal($id_jadwal,$hari,$ruangan, $jam_mulai, $jam_akhir);
 
 		redirect("silabuso/info_mk_prodi/".$id_mk_prodi);
 	}

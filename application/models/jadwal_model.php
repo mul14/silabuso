@@ -5,8 +5,9 @@ class jadwal_model extends CI_Model{
 		$this->load->database();
 	}
 
-	public function add($id_mk_prodi, $ruangan, $jam_mulai, $jam_akhir){
+	public function add($id_mk_prodi, $hari, $ruangan, $jam_mulai, $jam_akhir){
 		$this->db->insert("jadwal", array("id_mk_prodi"=>$id_mk_prodi,
+										  "hari"=>$hari,
 										  "ruangan"=>$ruangan,
 										  "jam_mulai"=>$jam_mulai,
 										  "jam_akhir"=>$jam_akhir));
@@ -22,9 +23,10 @@ class jadwal_model extends CI_Model{
 		return $data;
 	}
 
-	public function update_by_idjadwal($id_jadwal, $ruangan, $jam_mulai, $jam_akhir){
+	public function update_by_idjadwal($id_jadwal, $hari, $ruangan, $jam_mulai, $jam_akhir){
 		$this->db->where("id_jadwal", $id_jadwal);
 		$this->db->update("jadwal", array("ruangan"=>$ruangan,
+										  "hari"=>$hari,
 										  "jam_mulai"=>$jam_mulai,
 										  "jam_akhir"=>$jam_akhir));
 	}
