@@ -21,4 +21,4 @@ Edit user
 	<input type="submit" value="Edit"/>
 </form>
 
-<a href="<?php echo base_url()?>proc/del_user?id_user=<?php echo $user->id_userl?>">! Hapus user ini</a>
+<a href="<?php echo base_url()?>proc/del_user?id_user=<?php echo $user->id_user?>">! Hapus user ini</a>

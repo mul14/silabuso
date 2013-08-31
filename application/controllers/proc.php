@@ -15,6 +15,8 @@ class proc extends CI_Controller{
 		$this->load->model("prasyarat_model");
 		$this->load->model("jadwal_model");
 		$this->load->model("user_model");
+
+		$this->load->library("session_login");
 	}
 
 	// proses tambah prodi
@@ -36,6 +38,8 @@ class proc extends CI_Controller{
 	}
 
 	public function del_prodi(){
+		$this->session_login->check_login();
+
 		$kode_prodi	= $this->input->get("kode_prodi");
 
 		$data_prodi = $this->prodi_model->get_by_kodeprodi($kode_prodi)->row();
@@ -73,6 +77,8 @@ class proc extends CI_Controller{
 	}
 
 	public function del_dosen(){
+		$this->session_login->check_login();
+
 		$kode_dosen	= $this->input->get("kode_dosen");
 
 		$data_dosen = $this->dosen_model->get_by_kodedosen($kode_dosen)->row();
@@ -120,6 +126,8 @@ class proc extends CI_Controller{
 
 	//hapus matakuliah
 	public function delete_matakuliah(){
+		$this->session_login->check_login();
+
 		$id_mk 		= $this->input->get("id_mk");
 
 		$this->matakuliah_model->delete_by_idmk($id_mk);
@@ -141,6 +149,8 @@ class proc extends CI_Controller{
 	}
 
 	public function del_mk_prodi(){
+		$this->session_login->check_login();
+
 		$id_mk_prodi = $this->input->get("id_mk_prodi");
 		
 		$data_mk_prodi = $this->mk_prodi_model->get_by_idmkprodi($id_mk_prodi)->row();
@@ -178,6 +188,8 @@ class proc extends CI_Controller{
 
 	//hapus [dosen dari prodi dari mk]
 	public function del_mkprodi_dosen(){
+		$this->session_login->check_login();
+
 		$id_mkprodi_dosen	= $this->input->get("id_mkprodi_dosen");
 		$id_mk_prodi 		= $this->input->get("id_mk_prodi");
 
@@ -211,6 +223,8 @@ class proc extends CI_Controller{
 
 	//hapus prasyarat
 	public function del_prasyarat(){
+		$this->session_login->check_login();
+
 		$id_prasyarat		= $this->input->get("id_prasyarat");
 		$id_mk_prodi 		= $this->input->get("id_mk_prodi");
 
@@ -248,6 +262,8 @@ class proc extends CI_Controller{
 	}
 
 	public function del_jadwal(){
+		$this->session_login->check_login();
+
 		$id_jadwal		= $this->input->get("id_jadwal");
 		$id_mk_prodi 	= $this->input->get("id_mk_prodi");
 		$this->jadwal_model->delete_by_idjadwal($id_jadwal);
@@ -329,10 +345,26 @@ class proc extends CI_Controller{
 
 		//hanya admin yang bisa menghapus user
 		//nanti cek di session apakah dia admin?
+		//fitur pengecekan ini masih di hardcode
+		//...
 		//kemudian cek apakah dia tidak menghapus dirinya sendiri?
 
-		$this->user_model->delete_by_iduser($id_user);
+		//cek admin
+		$self_id_user = $this->session->userdata("id_user");
+		$data_user = $this->user_model->get_by_iduser($self_id_user)->row();
+
+		//di hardcoded dicek apakah dia adalah admin
+		if ($data_user->id_jabatan == 1) {
+			//cek tidak menghapus diri sendiri
+			if ($self_id_user != $id_user) {
+				$this->user_model->delete_by_iduser($id_user);
+				redirect("silabuso/edit_user");
+			}
+		}
+
 		redirect("silabuso/edit_user");
+
+		
 	}
 
 	public function login(){
