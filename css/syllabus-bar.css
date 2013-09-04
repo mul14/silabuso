@@ -1,0 +1,146 @@
+dl {
+    margin:						0;
+    min-height:					1px;
+	overflow: 					hidden;
+    padding:					40px 0 0 0;
+    position:					relative;
+}
+dt, .fakeHeader {
+    background: 				#161616;
+    opacity:					1;
+    /*border-bottom: 				1px solid #989EA4;*/
+    color:						#FFF;
+    font:						15px/30px 'Lato';
+    font-weight: 400;
+    margin: 					0;
+    padding: 					5px 0 5px 12px;
+    position: 					absolute;
+    text-shadow:				0 1px #646A6E;
+    -moz-text-shadow:			0 1px #646A6E;
+    -webkit-text-shadow:		0 1px #646A6E;
+    
+}
+dt {
+    bottom:						auto;
+    min-height:					1px;
+    top:						0;
+    width:						100%;
+
+}
+
+.fakeHeader {
+    width:						95.9%;
+    z-index: 					1000;
+    opacity:                    0.8;
+}
+
+
+.fakeHeader.hidden {
+    visibility:					hidden;
+    /*opacity: 0;*/
+    /*display: none;*/
+   
+}
+dl.animated dt {
+    bottom:						0;
+    top:						auto;
+    opacity: 0.8;
+
+}
+dd {
+	font:                       14px/24px 'Lato';
+    cursor:                     pointer;
+    margin:                     0;
+    padding:                    0 0 0 12px;
+    white-space:                nowrap;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+
+dd:hover{
+    background-color: #479bdb;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+
+
+dd + dd {
+    border-top: 				1px solid #CCC;
+}
+.listWrapper{
+  	height: 					300px;
+    overflow:					visible;
+    position:					relative; 
+    width:						100%;
+    zoom:						1;
+}
+
+
+dl table{
+    width: 100%;
+}
+
+#syllabus-bar table{
+	border-collapse: collapse;
+}
+
+#syllabus-bar tr{
+	background-color: #e0e0e0;
+}
+
+#syllabus-bar tr:hover{
+	border-style: none;
+	background-color: #d0d0d0;
+}
+
+#syllabus-bar-content{
+    height: 100%;
+    font-size: 15px;
+    overflow-y: scroll;
+    position: relative;
+}
+
+#syllabus-bar{
+    height: 300px;
+    background-color: #ededef;
+}
+
+.sylbar-table{
+    
+}
+
+#syllabus-bar table tr td{
+    vertical-align: top;
+    border-bottom: 1px solid #cacaca;
+}
+
+
+/* Custom */
+
+.mk-wajib{
+    display: inline-block;
+    right: 0;
+    margin-right: 10px;
+    margin-top: -6px;
+    font-size: 20px;
+    color: #00ff54;
+}
+
+.mk-wajib:after{
+    clear:both;
+}
+
+.mk-nama{
+    display: inline-block;
+    width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.syllabus-bar-loading{
+    background-color: #ededed;
+    text-align: center;
+    padding: 15px;
+}

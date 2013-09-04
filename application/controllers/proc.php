@@ -24,7 +24,7 @@ class proc extends CI_Controller{
 		$kode_prodi = $this->input->post('kode_prodi');
 		$nama_prodi	= $this->input->post('nama_prodi');
 		$this->prodi_model->add(strtoupper($kode_prodi), $nama_prodi);
-		redirect("silabuso/index?msg=1");
+		redirect("silabuso/admin?msg=1");
 	}
 
 	// proses edit prodi
@@ -34,7 +34,7 @@ class proc extends CI_Controller{
 		$id_prodi	= $this->input->post('id_prodi');
 
 		$this->prodi_model->update_by_idprodi($id_prodi, $kode_prodi, $nama_prodi);
-		redirect("silabuso/index?msg=2");
+		redirect("silabuso/admin?msg=2");
 	}
 
 	public function del_prodi(){
@@ -62,7 +62,7 @@ class proc extends CI_Controller{
 		$nama_dosen	= $this->input->post('nama_dosen');
 
 		$this->dosen_model->add($kode_dosen, $nip_dosen, $nama_dosen);
-		redirect("silabuso/index?msg=3");
+		redirect("silabuso/admin?msg=3");
 	}
 
 	// proses edit dosen
@@ -73,7 +73,7 @@ class proc extends CI_Controller{
 		$id_dosen	= $this->input->post('id_dosen');
 
 		$this->dosen_model->update_by_iddosen($id_dosen, $kode_dosen, $nip_dosen, $nama_dosen);
-		redirect("silabuso/index?msg=4");
+		redirect("silabuso/admin?msg=4");
 	}
 
 	public function del_dosen(){
@@ -106,7 +106,7 @@ class proc extends CI_Controller{
 
 		$this->matakuliah_model->add($kode_mk, $nama_mk, $sks, $penjelasan, $sap, $silabus);
 		
-		redirect("silabuso/index?msg=5");
+		redirect("silabuso/admin?msg=5");
 	}
 
 	// proses edit matakuliah
@@ -121,7 +121,7 @@ class proc extends CI_Controller{
 		$id_mk		= $this->input->post('id_mk');
 
 		$this->matakuliah_model->update_by_idmk($id_mk,$kode_mk, $nama_mk, $sks, $penjelasan, $sap, $silabus);
-		redirect("silabuso/index?msg=6");
+		redirect("silabuso/admin?msg=6");
 	}
 
 	//hapus matakuliah

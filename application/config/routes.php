@@ -38,8 +38,9 @@
 |
 */
 
-$route['default_controller'] = "silabuso";
-$route['p/(:any)'] = "silabuso/$1";	//halaman
+$route['default_controller'] = "frontend";
+$route['f/(:any)'] = "frontend/$1";	//frontend
+$route['p/(:any)'] = "silabuso/$1";	//halaman administrasi
 $route['proc/(:any)'] = "proc/$1";	//process
 $route['(:any)'] = "$1";
 $route['404_override'] = '';

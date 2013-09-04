@@ -34,4 +34,9 @@ class mkprodi_dosen_model extends CI_Model{
 		$data = $this->db->get_where("mkprodi_dosen", array("id_dosen"=>$id_dosen));
 		return $data;
 	}
+
+	public function get_by_idmkprodidosen($id_mk_prodi){
+		$data = $this->db->get_where("mkprodi_dosen", array("id_mk_prodi"=>$id_mk_prodi));
+		return $data;
+	}
 }

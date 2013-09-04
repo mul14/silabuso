@@ -12,7 +12,10 @@ class prasyarat_model extends CI_Model{
 
 	public function get_by_idmkprodi($id_mk_prodi){
 		// $data = $this->db->get_where("mk_prodi", array("id_mk_prodi"=>$id_mk_prodi));
-		$query = "SELECT * FROM prasyarat as pr, mk_prodi as mp, matakuliah as m, prodi as p, sifat as s
+		$query = "SELECT mp.id_mk, mp.id_sifat, mp.semester,
+						 m.kode_mk, m.nama_mk, m.sks,
+						 m.penjelasan, pr.id_prasyarat
+					     FROM prasyarat as pr, mk_prodi as mp, matakuliah as m, prodi as p, sifat as s
 								WHERE
 								mp.id_mk = m.id_mk AND
 								mp.id_sifat = s.id_sifat AND

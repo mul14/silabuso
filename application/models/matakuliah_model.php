@@ -30,11 +30,13 @@ class matakuliah_model extends CI_Model{
 	//properti:
 	//	kode_mk
 	public function get_by_kodemk($kode_mk){
+		$this->db->select('id_mk, kode_mk, nama_mk, sks, penjelasan');
 		$data = $this->db->get_where("matakuliah", array("kode_mk"=>$kode_mk));
 		return $data;
 	}
 
 	public function get_by_idmk($id_mk){
+		
 		$data = $this->db->get_where("matakuliah", array("id_mk"=>$id_mk));
 		return $data;
 	}

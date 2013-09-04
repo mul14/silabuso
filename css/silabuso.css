@@ -1,0 +1,295 @@
+body{
+	/*background-image: url('../img/Sky.jpg');*/
+	/*background-color: #303030;*/
+}
+
+.silabuso-dropdown{
+	font-family: 'Lato', sans-serif;
+	background-color: #2041bc;
+	font-size: 20px;
+	text-align: center;
+}
+
+
+.dropdown-bottom{
+	background-color: #143c8e;
+	cursor: pointer;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	height: 25px;
+}
+
+.dropdown-bottom:hover{
+	background-color: #479bdb;
+	padding-top: 10px;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	height: 40px;
+}
+
+.dropdown-selected{
+	color: #fff;
+	text-transform: uppercase;
+}
+
+.dropdown-content{
+	padding: 10px;
+	color: #e0e0e0;
+	height: 50px;
+	overflow: hidden;
+}
+
+.silabuso-icon-triangle-down{
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background-image: url('../img/triangle-down.png');
+}
+
+.silabuso-icon-triangle-up{
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background-image: url('../img/triangle-up.png');
+}
+
+.dropdown-selected{
+	text-align: center;
+}
+
+.dropdown-choice{
+	background-color: #fff;
+	text-transform: uppercase;
+}
+
+.dropdown-choice ul{
+	margin: 0;
+	padding: 0;
+}
+
+.dropdown-choice ul li{
+	list-style-type: none;
+	padding: 5px;
+
+	-webkit-transition: all 0.15s;
+	-moz-transition: all 0.15s;
+}
+
+.dropdown-choice ul li:hover{
+	background-color: #479bdb;
+	color:#fff;
+	cursor: pointer;
+
+}
+
+.dropdown-list{
+	
+}
+
+#silabuso-triangle-icon{
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	margin: 3px;
+}
+
+.silabuso-icon-rotate{
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+}
+
+.silabuso-title{
+	font: 30px/35px 'Lato';
+
+	background-color: #535353;
+	color: #fff;
+	
+	text-transform: uppercase;
+	font-weight: 100;
+}
+.silabuso-title .content{
+	padding: 15px;
+
+}
+
+#silabuso-content-left{
+	background-color: #ededed;
+}
+
+#silabuso-content-right{
+
+}
+
+#silabuso-content{
+	/*font: 13px 'Lato';*/
+	font-weight: 300;
+	padding: 5px 25px 0 25px;
+	border-left: 1px solid #d0d0d0;
+	border-right: 1px solid #d0d0d0;
+	height: 500px;
+	overflow-y: scroll;
+	background-color: #fafafa;
+	margin-bottom: 3px;
+}
+
+.penjelasan-singkat{
+	text-indent: 20px;
+	text-align: justify;
+}
+
+.silabuso-paper-small{
+	/*width: 232px;*/
+	height: 30px;
+	background-image: url('../img/fold-grey.png');
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	background-color: #fff;
+	border-bottom-right-radius: 15px;
+	font-size: 13px;
+	border: 1px solid #e0e0e0;
+}
+
+.silabuso-paper-small .content{
+	padding: 5px 8px 5px 10px;
+}
+
+
+.paper-title{
+	display: inline-block;
+	font-weight: bold;
+	width: 100px;
+	border-right: 1px solid #e0e0e0;
+	margin-right: 5px;
+	text-transform: uppercase;
+}
+
+.silabuso-row{
+	/*margin: 10px 0 5px 0;*/
+}
+
+.nospace [class*="span"]{
+	margin-bottom: 0 !important;
+	min-height: inherit !important;
+}
+
+.silabuso-btn{
+	font: 15px 'Lato';
+	font-weight: 200;
+	height:35px;
+	/*background-color: #143c8e;*/
+	border: 1px solid #093e72;
+	cursor: pointer;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	/*color: #fff;*/
+	color: #143c83;
+	border-radius: 4px;
+	margin: 1px;
+}
+
+
+.silabuso-btn:hover{
+	background-color: #479bdb;
+	color: #fff;
+	border: 1px solid #2983b9;
+
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+}
+
+.silabuso-btn .content:hover{
+	padding-left: 20px;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+}
+
+.silabuso-btn-a:hover	{
+	text-decoration: none;
+}
+
+.silabuso-btn .content{
+	padding: 8px 0 5px 5px;
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	overflow: hidden;
+	text-align: center;
+}
+
+.subcontent-title{
+	font: 13px 'Lato';
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.glyphicon-inverse, .glyphicon-inverse a{
+	color: #fff;
+}
+
+#silabuso-main-content{
+	
+}
+
+#silabuso-main-intro{
+	background-image: url('../img/Sky.png');
+	background-size: 100% ;
+	background-repeat: no-repeat;
+	height: 100px;
+	/*background-color: #303030;*/
+}
+
+
+.body-hide{
+	-webkit-transform: 	translate3d(-100%, 0, 0) rotateY(0deg);
+	-moz-transform: 	translate3d(-100%, 0, 0) rotateY(0deg);
+}
+
+.parallax-header{
+	height: 200px;
+	overflow: hidden;
+}
+
+.parallax-header-background{
+	height: 400px;
+	background-image: url('../img/Sky.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	position: relative;
+	z-index: 1;
+}
+
+.parallax-header-content{
+	z-index: 3;
+	position: absolute;
+	color: #fff;
+	height: 20px;
+	top: 0;
+	width: 100%;
+}
+
+.parallax-header-container{
+	padding-top: 30px;
+	text-align: center;
+	width: 100%;
+	font-family: 'Lato';
+	/*font-weight: bold;*/
+}
+
+.parallax-header-container h1{
+	font: 100px/80px 'Lato';
+	font-weight: 100;
+}
+
+.footer{
+	font-family: 'Lato';
+	font-weight: bold;
+}
+
+.title-loading{
+	text-align: center;
+	background-color: #535353;
+	padding: 10px;
+}
+
+#sap-silabus{
+	/*background-color: #e0e0e0;*/
+}

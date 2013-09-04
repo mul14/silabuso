@@ -38,6 +38,7 @@ class dosen_model extends CI_Model{
 												"nama_dosen"=>$nama_dosen,));
 	}
 
+
 	public function delete_by_iddosen($id_dosen){
 		//cek dulu tidak ada yang menggunakan id_dosen di mkprodi_dosen akan dihapus
 		$num_mkprodi_dosen = $this->db->get_where("mkprodi_dosen", array("id_dosen"=>$id_dosen))->num_rows();
