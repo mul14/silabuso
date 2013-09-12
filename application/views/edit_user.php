@@ -1,3 +1,5 @@
+<a href="<?php echo base_url()?>p/add_user">Add user</a>
+
 <?php
 	
 	foreach ($user as $u) {

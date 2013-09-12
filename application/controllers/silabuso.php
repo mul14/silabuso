@@ -318,9 +318,9 @@ class silabuso extends CI_Controller{
 			redirect("silabuso/admin");
 		}
 
-		$this->load->view("tpl/head");
+		// $this->load->view("tpl/head");
 		$this->load->view("login");
-		$this->load->view("tpl/foot");
+		// $this->load->view("tpl/foot");
 	}
 
 	public function add_user(){

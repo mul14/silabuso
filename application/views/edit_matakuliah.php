@@ -1,17 +1,41 @@
 edit matakuliah
 
 <br/>
+
+<a href="<?php echo base_url()?>p/add_matakuliah">Add matakuliah</a>
+<table class="table">
+	<tr>
+		<th>kode mk
+		</th>
+		<th>nama mk
+		</th>
+		<th>SKS
+		</th>
+	</tr>
 <?php
 	foreach ($matakuliah as $m) {
-		echo $m->id_mk."<br/>";
-		echo $m->kode_mk."<br/>";
-		echo $m->nama_mk."<br/>";
-		echo $m->sks."<br/>";
-		echo $m->penjelasan."<br/>";
-		echo $m->sap."<br/>";
-		echo $m->silabus."<br/>";
-		echo " - <a href='".base_url()."p/edit_matakuliah_p/".$m->kode_mk."'>edit</a>";
-		echo " - <a href='".base_url()."proc/delete_matakuliah?id_mk=".$m->id_mk."'>hapus</a>";
-		echo "<hr/>";
+		echo "<tr>";
+			echo "<td>";
+				echo $m->kode_mk;
+			echo "</td>";
+			echo "<td>";
+				echo $m->nama_mk;
+			echo "</td>";
+			echo "<td>";
+				echo $m->sks;	
+			echo "</td>";
+			echo "<td>";
+				echo "<a href='".base_url()."p/edit_matakuliah_p/".$m->kode_mk."'>".
+						"<span class='glyphicon glyphicon-edit'></span>".
+					 "</a>";
+			echo "</td>";
+			echo "<td>";
+				echo "<a href='".base_url()."proc/delete_matakuliah?id_mk=".$m->id_mk."'>".
+						"<span class='glyphicon glyphicon-trash'></span>".
+					 "</a>";
+			echo "</td>";
+				
+		echo "</tr>";
 	}
 ?>
+</table>

@@ -69,7 +69,7 @@ dd + dd {
     border-top: 				1px solid #CCC;
 }
 .listWrapper{
-  	height: 					300px;
+  	height: 					400px;
     overflow:					visible;
     position:					relative; 
     width:						100%;
@@ -102,7 +102,7 @@ dl table{
 }
 
 #syllabus-bar{
-    height: 300px;
+    height: 400px;
     background-color: #ededef;
 }
 
@@ -143,4 +143,34 @@ dl table{
     background-color: #ededed;
     text-align: center;
     padding: 15px;
+}
+
+.syllabus-bar-menu-text{
+    font: 10px/1px 'Lato';
+    margin: 3px;
+}
+
+.syllabus-bar-menu{
+    border-top: 1px solid #2041bc;
+    font-family: 'Lato', sans-serif;
+    /*background-color: #143c8e;*/
+    background-color: #fff;
+    font-size: 20px;
+    text-align: center;
+    
+    /*height: 50px;*/
+}
+
+.syllabus-bar-menu-item{
+    color: #000;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;;
+    height: 50px;
+}
+
+.syllabus-bar-menu-item:hover{
+    color: #fff;
+    text-align: center;
+    background-color: #479bdb;
 }

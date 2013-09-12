@@ -33,10 +33,17 @@
 
 			//efek dropdown
 			$(".dropdown-bottom").click(function(){
+				efekDropdown();
+			});
+
+			$("#dropdown-content").click(function(){
+				efekDropdown();
+			});
+
+			function efekDropdown(){
 				$(".dropdown-list").slideToggle(100);
 				$("#silabuso-triangle-icon").toggleClass("silabuso-icon-rotate");
-
-			});
+			}
 
 
 			//load list nama-nama prodi
@@ -56,6 +63,7 @@
 			$(".title-loading").hide();
 			//sembunyikan konten silabus (karena belum terpilih)
 			$("#syllabus-bar").hide();
+			$("#silabuso-content-container").hide();
 
 		});
 	</script>
@@ -104,6 +112,14 @@
 							<div class="row">
 								<div  class="col-md-12">
 									<div id="silabuso-content">
+
+										<div id="silabuso-content-intro">
+											
+											Selamat datang di silabus online<br/>
+											Silahkan pilih jurusan dan mata kuliah
+
+										</div>
+
 										<div id="silabuso-content-container">
 											<div class="row">
 												<div class="silabuso-paper-small col-md-4 col-md-offset-2">
@@ -284,9 +300,9 @@
 
 					<div class="col-md-4" id="silabuso-content-right">
 						<div class="silabuso-dropdown">
-							<div class="dropdown-content">
+							<div class="dropdown-content" id="dropdown-content">
 								<div class="dropdown-selected" id="dropdown-selected">
-									JURUSAN
+									PROGRAM STUDI
 								</div>
 								<!-- .dropdown-selected -->
 							</div>
@@ -336,16 +352,25 @@
 							<img src="<?php echo base_url()?>img/5.gif"/>
 						</div>
 
-						<div class="silabuso-dropdown">
-							<div class="dropdown-content">
-								<div class="dropdown-selected">
-									pilihan
-								</div>
-								<!-- .dropdown-selected -->
+						<div class="syllabus-bar-menu">
+							<div class="syllabus-bar-menu-content">
+									
+									<div class="container">
+										<div class="row">
+											<div class="col-md-4">
+
+												<div class="syllabus-bar-menu-item">
+													<span class="glyphicon glyphicon-list-alt"></span>
+													<div class="syllabus-bar-menu-text">lengkap</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
 							</div>
-							<!-- .dropdown-content -->
+							<!-- .syllabus-bar-menu-content -->
 						</div>
-						<!-- .silabuso-dropdown -->
+						<!-- .syllabus-bar-menu -->
 
 
 					</div>
@@ -359,13 +384,27 @@
 			</div>
 		<!-- .container -->
 
-		<div class
-		<div class="row footer">
-			<div class="col-md-12">
-				<center>Cengek Dev 2013 for CSUPI</center>
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						Logo 2
+					</div>
+					<div class="col-md-4">
+						
+					</div>
+					<div class="col-md-4">
+						<center>Cengek Dev 2013 for CSUPI</center>
+					</div>
+					
+				</div>
+				<!-- .row -->
 			</div>
+			<!-- .container -->
 		</div>
-		<!-- .row -->
+		<!-- .footer -->
+		
+		
 
 	</body>
 

@@ -1,5 +1,7 @@
 edit dosen
 
+<a href="<?php echo base_url()?>p/add_dosen">Add dosen</a>
+
 <br/>
 <?php
 	foreach ($dosen as $d) {

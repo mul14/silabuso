@@ -13,6 +13,11 @@ function load_mk_prodi(id_mk_prodi){
 	$(".title-loading").slideDown(100);
 	$("#silabuso-content-container").slideUp(100);
 
+	//menghilangkan intro jika pertama kali muncul
+	if ($("#silabuso-content-container").css("display") == "none") {
+		$("#silabuso-content-intro").fadeOut();
+	}
+
 	$("#infomk-title").slideUp(200, function(){
 		console.log("id_mk_prodi :" + id_mk_prodi);
 		$.ajax({
@@ -144,7 +149,7 @@ function load_mk_prodi(id_mk_prodi){
 				//tampilkan lagi setelah semua diload
 				$("#infomk-title").slideDown();
 				$(".title-loading").slideUp();
-				$("#silabuso-content-container").slideDown();
+				$("#silabuso-content-container").fadeIn();
 
 				
 		    }

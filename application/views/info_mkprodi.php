@@ -52,4 +52,17 @@ Jadwal:
 	</ul>
 
 <hr/>
-<a href="<?php echo base_url()?>proc/del_mk_prodi?id_mk_prodi=<?php echo $mk_prodi->id_mk_prodi?>">Hapus matakuliah ini di prodi ini</a>
+
+<div class="alert alert-danger">
+Jika ingin menghapus matakuliah di Prodi ini pastikan sudah
+tidak ada <b>jadwal</b>, <b>prasyarat</b>, dan <b>dosen</b> yang 
+menggunakan matakuliah ini
+
+<br/>
+
+<a href="<?php echo base_url()?>proc/del_mk_prodi?id_mk_prodi=<?php echo $mk_prodi->id_mk_prodi?>">
+	<span class="glyphicon glyphicon-trash"></span>
+	Hapus matakuliah ini di prodi ini
+</a>
+
+</div>

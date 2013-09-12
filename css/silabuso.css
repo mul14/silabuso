@@ -17,6 +17,8 @@ body{
 	-webkit-transition: all 0.2s;
 	-moz-transition: all 0.2s;
 	height: 25px;
+	border-bottom: #002070 solid 5px;
+	padding-bottom: 25px;
 }
 
 .dropdown-bottom:hover{
@@ -25,6 +27,14 @@ body{
 	-webkit-transition: all 0.2s;
 	-moz-transition: all 0.2s;
 	height: 40px;
+}
+
+#dropdown-content{
+	cursor: pointer;
+}
+
+#dropdown-content:hover{
+	background-color:  #479bdb;
 }
 
 .dropdown-selected{
@@ -247,9 +257,13 @@ body{
 	height: 200px;
 	overflow: hidden;
 }
+.parallax-header.admin{
+	height: 500px;
+	overflow: hidden;
+}
 
 .parallax-header-background{
-	height: 400px;
+	height: 800px;
 	background-image: url('../img/Sky.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
@@ -281,7 +295,11 @@ body{
 
 .footer{
 	font-family: 'Lato';
-	font-weight: bold;
+	/*font-weight: bold;*/
+	background-color: #333;
+	color: #fff;
+	height: 80px;
+	padding-top: 50px;
 }
 
 .title-loading{
@@ -292,4 +310,42 @@ body{
 
 #sap-silabus{
 	/*background-color: #e0e0e0;*/
+}
+
+/* ADMIN MENU */
+#admin-bar{
+	background-color: #808080;
+	height: 100%;
+}
+
+.admin-btn{
+	background-color: #e0e0e0;
+	padding: 5px;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+
+}
+
+.admin-btn:hover{
+	background-color: #d0d0d0;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+}
+
+.admin-btn.home{
+	background-color: #c0c0c0;
+}
+
+.admin-content{
+	padding: 20px;
+}
+
+.form-control.admin{
+	background-color: transparent;
+	color: #999;
+}
+
+.form-control.admin:focus{
+	background-color: #fff;
+	color: #000;
 }
